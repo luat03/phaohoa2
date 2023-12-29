@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <a href="index1.html" class="hi-icon hi-icon-livetv">quay lại</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Camera</title>
+</head>
+<body>
+    <video id="camera" width="640" height="480" autoplay></video>
+    
+    <script>
+        // Kiểm tra nếu trình duyệt hỗ trợ WebRTC
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Truy cập camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    var video = document.getElementById('camera');
+                    // Gán stream cho thẻ video
+                    video.srcObject = stream;
+                })
+                .catch(function(error) {
+                    console.error('Error accessing camera:', error);
+                });
+        } else {
+            console.error('WebRTC is not supported in this browser.');
+        }
+    </script>
+</body>
+</html>
